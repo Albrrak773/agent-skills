@@ -1,0 +1,22 @@
+{
+  "name": "albrrak-skills",
+  "owner": {
+    "name": "Albrrak773",
+    "url": "https://github.com/Albrrak773"
+  },
+  "metadata": {
+    "description": "Agent Skills for Claude Code",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "arabic-writing",
+      "description": "Writing Arabic product copy in business-casual Saudi Najdi",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/arabic-copy"
+      ]
+    }
+  ]
+}
