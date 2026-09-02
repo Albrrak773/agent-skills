@@ -1,4 +1,4 @@
-# claude-skills
+# agent-skills
 
 [Agent Skills](https://agentskills.io/specification) for Claude Code.
 
@@ -11,14 +11,14 @@
 As a plugin marketplace (installs every skill in the repo):
 
 ```
-/plugin marketplace add Albrrak773/claude-skills
+/plugin marketplace add Albrrak773/agent-skills
 ```
 
 Or drop a single skill in by hand:
 
 ```
-git clone https://github.com/Albrrak773/claude-skills
-cp -r claude-skills/skills/arabic-copy ~/.claude/skills/
+git clone https://github.com/Albrrak773/agent-skills
+cp -r agent-skills/skills/arabic-copy ~/.claude/skills/
 ```
 
 `~/.claude/skills/` makes it available everywhere; a project's own `.claude/skills/` scopes it to that repo.
