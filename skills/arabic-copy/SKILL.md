@@ -4,7 +4,7 @@ description: Write Arabic UI copy in business-casual Saudi Najdi, not MSA and no
 license: MIT
 ---
 
-# Arabic Copy — Business-Casual Najdi
+# Arabic Copy: Business-Casual Najdi
 
 Target reader: a Saudi professional. The copy should read like a competent colleague
 from Riyadh wrote it, not like a translation and not like a press release.
@@ -15,8 +15,8 @@ Arabic only. One rule below (§8, em dashes) is language-agnostic and applies to
 
 ## 1. The core rule: labels neutral, sentences Najdi
 
-Short nouns and labels stay plain and neutral. Anything that's a **sentence** — hints,
-subtitles, errors, empty states, confirmations, buttons carrying a verb — gets the
+Short nouns and labels stay plain and neutral. Anything that's a **sentence** (hints,
+subtitles, errors, empty states, confirmations, buttons carrying a verb) gets the
 Najdi voice.
 
 | Slot | Register | Example |
@@ -28,7 +28,7 @@ Najdi voice.
 
 Dialect on a one-word label reads jokey on a dense screen. Dialect in a sentence reads human.
 
-## 2. One register per sentence — never mix MSA and dialect
+## 2. One register per sentence: never mix MSA and dialect
 
 A single string picks a lane and stays in it. Half-and-half is the most common way this copy
 goes wrong, and it reads worse than either pure register would.
@@ -37,10 +37,10 @@ goes wrong, and it reads worse than either pure register would.
 |---|---|---|
 | `يرجى المحاولة مرة ثانية` | `حاول مرة ثانية` | `يرجى المحاولة مرة أخرى` |
 
-`يرجى` is MSA, `مرة ثانية` is dialect — one clause, two registers, clunky. Note the pairs:
+`يرجى` is MSA, `مرة ثانية` is dialect. One clause, two registers, clunky. Note the pairs:
 `مرة ثانية` goes with dialect, `مرة أخرى` goes with MSA.
 
-**Which lane?** §1 sets the default by slot, but validation and error strings lean MSA — they're
+**Which lane?** §1 sets the default by slot, but validation and error strings lean MSA. They're
 the moment to sound composed, not chatty. Everything conversational (hints, subtitles, empty
 states, marketing) leans Najdi.
 
@@ -53,8 +53,8 @@ verbs that are already natural in speech.
 
 If a plain verb is what a Riyadi would actually say out loud, use the plain verb:
 
-- `ارسل` ✅ — not `رسّل` ❌ (clunky, over-reaching)
-- `اكتب` `احذف` `جرب` `اختر` ✅ — all already natural, leave them alone
+- `ارسل` ✅ , not `رسّل` ❌ (clunky, over-reaching)
+- `اكتب` `احذف` `جرب` `اختر` ✅ , all already natural, leave them alone
 
 ## 4. Najdi, not Hejazi / Egyptian / Levantine
 
@@ -67,9 +67,9 @@ Mixing in another dialect is worse than plain MSA. Common leaks:
 | `دلوقتي` (Egyptian) | `الحين` |
 | `كمان` (Egyptian/Levantine) | `بعد` |
 | `شو` / `بدك` / `هلق` (Levantine) | `وش` / `تبي` / `الحين` |
-| `بـ` present prefix — `بتظهر` `بيروح` (Egyptian/Levantine) | bare verb: `تظهر` `يروح` |
+| `بـ` present prefix: `بتظهر` `بيروح` (Egyptian/Levantine) | bare verb: `تظهر` `يروح` |
 
-## 5. Restraint — business-casual, not majlis
+## 5. Restraint: business-casual, not majlis
 
 Najdi that's fine in speech but too casual for product UI:
 `وش` · `زين` · `ماهوب` · `ابغى` · `ودي` · `ذولا` · `تكفى`
@@ -98,27 +98,27 @@ Two mechanics doing the work there:
 
 ## 7. Tone shifts with the emotional context
 
-Politeness markers are **not** banned — they're context-dependent. Getting this backwards is
+Politeness markers are **not** banned. They're context-dependent. Getting this backwards is
 what makes copy read either robotic or rude.
 
 | Context | Rule | Example |
 |---|---|---|
-| **Neutral** (instructions, hints) | Direct imperative. Drop `يرجى`/`الرجاء` — padding here. | ✅ `أدخل بريدك للمتابعة`<br>❌ `يرجى إدخال البريد أولاً` |
+| **Neutral** (instructions, hints) | Direct imperative. Drop `يرجى`/`الرجاء`, padding here. | ✅ `أدخل بريدك للمتابعة`<br>❌ `يرجى إدخال البريد أولاً` |
 | **Negative** (errors, failures) | Soften, but **one** softener only. | ✅ `تعذر إرسال طلبك. يرجى المحاولة مرة أخرى.`<br>❌ `فشل الإرسال.` (bare verdict)<br>❌ `عذراً، تعذر إرسال طلبك.` (`عذراً` + `تعذر` = two apologies) |
 | **Positive** (success, welcome) | Talk about the *user*, not the operation. | ✅ `تم إرسال طلبك!`<br>❌ `تم الإرسال بنجاح.` |
 | **Empty state** | Plain statement of fact. Add a next step only if there's a real action. | ✅ `لا توجد ملفات`<br>❌ forced cheer (`ملفاتك بتظهر هنا`) |
 
 `بنجاح` and `تعذّر` are fine words. The failure in `تم الإرسال بنجاح.` is that it describes the
-*system's* action tersely instead of the user's outcome — not the word `بنجاح` itself.
+*system's* action tersely instead of the user's outcome, not the word `بنجاح` itself.
 
-## 8. Kill list — the real tells
+## 8. Kill list: the real tells
 
 | Kill | Why | Instead |
 |---|---|---|
 | `—` em dash | **Banned outright, every language, all copy.** | period, or comma |
 | `قم بإدخال` / `قم بالضغط` | `قم بـ` is pure translationese | `أدخل` / `اضغط` |
 | `الرصيد الخاص بك` | calqued "your" | `رصيدك` |
-| `عنوانًا` `نصًا` | tanween diacritics — nobody types these in UI | `عنوان` `نص` |
+| `عنوانًا` `نصًا` | tanween diacritics, nobody types these in UI | `عنوان` `نص` |
 | `…` (ellipsis char) | | `...` |
 | `بالإضافة إلى ذلك` `علاوة على ذلك` `كما أنه` | stacked essay connectors | split into two sentences |
 | sentences past ~15 words | | break them |
@@ -126,18 +126,18 @@ what makes copy read either robotic or rude.
 ## 9. Carve-out: legal text stays MSA
 
 Terms of service, privacy policy, billing/tax language, and refund terms stay formal MSA.
-Do not dialect-ify legal copy — the formality is load-bearing there.
+Do not dialect-ify legal copy. The formality is load-bearing there.
 
 ## 10. Register ladder by surface
 
 Same voice, different warmth:
 
-1. **Landing / marketing** — warmest. Direct address, short punchy sentences.
-2. **Product UI** (the app itself) — business-casual. The default; §1 governs.
-3. **Transactional email to customers** — one notch more composed. Najdi function words are
+1. **Landing / marketing**: warmest. Direct address, short punchy sentences.
+2. **Product UI** (the app itself): business-casual. The default; §1 governs.
+3. **Transactional email to customers**: one notch more composed. Najdi function words are
    fine; skip the most casual phrasings.
-4. **Admin internal** — most relaxed. It's your own team reading it.
-5. **Legal** — formal MSA (see §9).
+4. **Admin internal**: most relaxed. It's your own team reading it.
+5. **Legal**: formal MSA (see §9).
 
 ## 11. Before you ship a string
 
