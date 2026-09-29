@@ -1,0 +1,424 @@
+<title>{{Project}} Work Report, {{Mon D–D}}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root {
+  /* BRAND: the one block a project profile may change: --accent / --accent-soft here and in
+     both dark blocks below. Keep --add/--del GitHub green/red and --good/--bad as they are. */
+  --ground: #FAF8F4; --card: #FFFFFF; --inset: #F2EFEA;
+  --line: #E4DFD4; --line-strong: #CCC6BA;
+  --ink: #15140F; --ink-2: #55524C; --ink-3: #7B776E;
+  --accent: #4C72CA; --accent-soft: rgba(76,114,202,0.10);
+  --good: #2F8F6A; --good-soft: rgba(47,143,106,0.10);
+  --bad: #B8474A; --bad-soft: rgba(184,71,74,0.09);
+  --add: #1A7F37; --del: #CF222E;
+  --display: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --ground: #0D0D10; --card: #131318; --inset: #1A1A20;
+    --line: #1E1E24; --line-strong: #2A2A33;
+    --ink: #F4F2EE; --ink-2: #B8B5AE; --ink-3: #8C8982;
+    --accent: #7FA6FF; --accent-soft: rgba(95,145,255,0.12);
+    --good: #5BBF99; --good-soft: rgba(91,191,153,0.10);
+    --bad: #E26A6A; --bad-soft: rgba(226,106,106,0.09);
+    --add: #3FB950; --del: #F85149;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --ground: #0D0D10; --card: #131318; --inset: #1A1A20;
+  --line: #1E1E24; --line-strong: #2A2A33;
+  --ink: #F4F2EE; --ink-2: #B8B5AE; --ink-3: #8C8982;
+  --accent: #7FA6FF; --accent-soft: rgba(95,145,255,0.12);
+  --good: #5BBF99; --good-soft: rgba(91,191,153,0.10);
+  --bad: #E26A6A; --bad-soft: rgba(226,106,106,0.09);
+  --add: #3FB950; --del: #F85149;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--ground); color: var(--ink);
+  font: 400 16px/1.6 var(--body);
+  padding-inline: 20px; padding-block: 0 96px;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 1080px; margin-inline: auto; }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, summary:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+code, .mono { font-family: var(--mono); font-size: 0.86em; }
+code { background: var(--inset); padding: 0.1em 0.35em; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; letter-spacing: -0.01em; }
+p { margin: 0; max-width: 68ch; }
+
+/* ── masthead ───────────────────────────── */
+.mast { padding-block: 56px 32px; display: grid; gap: 18px; border-bottom: 1px solid var(--line); }
+.eyebrow { font: 500 12px/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); }
+.mast h1 { font-size: clamp(34px, 5vw, 54px); font-weight: 800; line-height: 1.05; }
+.mast h1 span { color: var(--accent); }
+.mast .lede { font-size: 18px; color: var(--ink-2); max-width: 62ch; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; margin-top: 10px; }
+.stat { background: var(--card); padding: 16px 18px; display: grid; gap: 4px; align-content: start; }
+.stat b { font: 700 28px/1.1 var(--display); font-variant-numeric: tabular-nums; }
+.stat span { font-size: 13px; color: var(--ink-2); line-height: 1.4; }
+.stat .diff { display: flex; flex-wrap: wrap; column-gap: 10px; }
+.stat .diff span { font: inherit; line-height: inherit; }
+.stat .plus { color: var(--add); }
+.stat .minus { color: var(--del); }
+
+/* ── nav ───────────────────────────── */
+nav.toc { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--ground); border-bottom: 1px solid var(--line); padding-block: 10px; display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; }
+nav.toc a { flex: none; font-size: 13px; font-weight: 500; color: var(--ink-2); text-decoration: none; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); display: inline-flex; gap: 7px; align-items: baseline; }
+nav.toc a i { font: 500 11px/1 var(--mono); font-style: normal; color: var(--ink-3); }
+nav.toc a:hover { color: var(--ink); border-color: var(--line-strong); }
+
+/* ── sections ───────────────────────────── */
+section.theme { padding-block: 64px 8px; display: grid; gap: 22px; scroll-margin-top: 60px; }
+.head { display: grid; gap: 12px; }
+.kicker { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.tag { font: 500 11.5px/1 var(--mono); letter-spacing: 0.04em; padding: 5px 8px; border-radius: 6px; background: var(--inset); color: var(--ink-2); }
+.tag.flag { background: var(--accent-soft); color: var(--accent); }
+section.theme h2 { font-size: clamp(26px, 3.4vw, 36px); font-weight: 700; line-height: 1.12; display: flex; gap: 14px; align-items: baseline; }
+.num { font: 700 0.62em/1 var(--mono); color: var(--accent); font-variant-numeric: tabular-nums; flex: none; }
+.plain { font-size: 17.5px; color: var(--ink); }
+
+.prs { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.prs .lbl { font: 500 11px/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); margin-inline-end: 4px; }
+.prs a { font: 500 12.5px/1 var(--mono); text-decoration: none; padding: 6px 9px; border-radius: 6px; border: 1px solid var(--line); color: var(--ink-2); background: var(--card); }
+.prs a b { color: var(--accent); font-weight: 600; }
+.prs a:hover { color: var(--ink); border-color: var(--accent); }
+.prs a.closed { opacity: 0.65; }
+.prs a.closed b { text-decoration: line-through; color: var(--ink-3); }
+
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.compare.stack { grid-template-columns: 1fr; }
+figure { margin: 0; display: grid; gap: 8px; min-width: 0; align-content: start; }
+.shot { position: relative; }
+figure img { display: block; width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--line); background: #0D0D10; cursor: zoom-in; }
+figcaption { font-size: 13.5px; color: var(--ink-2); line-height: 1.45; }
+.label { font: 600 11px/1 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 6px; }
+.label::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.label.before { color: var(--bad); }
+.label.after { color: var(--good); }
+.label.new { color: var(--accent); }
+
+.diagram { position: relative; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; display: grid; gap: 10px; min-width: 0; align-content: start; }
+.diagram .scroll { overflow-x: auto; }
+.diagram .scroll svg { cursor: zoom-in; }
+.diagram pre.mermaid { margin: 0; background: transparent; text-align: center; font-size: 13px; }
+
+/* expand button, shared by screenshots and diagrams */
+.expand { position: absolute; top: 8px; inset-inline-end: 8px; width: 30px; height: 30px; display: grid; place-items: center; border-radius: 8px; border: 1px solid var(--line-strong); background: var(--card); color: var(--ink-2); cursor: pointer; opacity: 0.85; transition: opacity .15s, color .15s; }
+.expand:hover { opacity: 1; color: var(--accent); }
+.expand svg { width: 15px; height: 15px; }
+
+.better { background: var(--good-soft); border-radius: 12px; padding: 18px 20px; display: grid; gap: 10px; }
+.better h3 { font-size: 15px; font-weight: 700; color: var(--good); }
+.better ul { margin: 0; padding-inline-start: 20px; display: grid; gap: 8px; }
+.better li { max-width: 78ch; }
+.better li b { font-variant-numeric: tabular-nums; }
+
+table.data { border-collapse: collapse; width: 100%; font-size: 14px; }
+.tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--card); }
+table.data th, table.data td { text-align: start; padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.data tr:last-child td { border-bottom: 0; }
+table.data th { font: 600 11.5px/1.2 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); background: var(--inset); }
+table.data td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+details.tech { border: 1px solid var(--line); border-radius: 12px; background: var(--card); }
+details.tech > summary { cursor: pointer; list-style: none; padding: 14px 18px; font-weight: 600; font-size: 15px; display: flex; justify-content: space-between; gap: 12px; }
+details.tech > summary::-webkit-details-marker { display: none; }
+details.tech > summary::after { content: "Show"; font: 500 12px/1.6 var(--mono); color: var(--accent); }
+details.tech[open] > summary::after { content: "Hide"; }
+details.tech .inner { padding: 18px 18px 20px; display: grid; gap: 18px; border-top: 1px solid var(--line); }
+details.tech .inner > p, details.tech li { font-size: 15px; color: var(--ink-2); }
+details.tech ul { margin: 0; padding-inline-start: 20px; display: grid; gap: 6px; }
+
+.small-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
+.small { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 18px; display: grid; gap: 12px; align-content: start; }
+.small h3 { font-size: 18px; font-weight: 700; display: flex; gap: 10px; align-items: baseline; }
+.small p { font-size: 15px; color: var(--ink-2); }
+
+/* ── lightbox ───────────────────────────── */
+dialog.lb { width: 100vw; height: 100vh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: rgba(8,8,10,0.94); color: #F4F2EE; }
+dialog.lb[open] { display: grid; grid-template-rows: auto 1fr; }
+dialog.lb::backdrop { background: rgba(8,8,10,0.6); }
+.lb-bar { background: #08080A; display: flex; align-items: center; gap: 12px; padding: calc(10px + env(safe-area-inset-top, 0px)) 16px 10px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.lb-cap { flex: 1; font-size: 13.5px; color: #B8B5AE; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lb-bar button { font: 500 13px/1 var(--body); color: #F4F2EE; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14); border-radius: 8px; padding: 8px 12px; cursor: pointer; }
+.lb-bar button:hover { background: rgba(255,255,255,0.14); }
+.lb-body { overflow: auto; display: flex; padding: 24px; }
+.lb-body > * { margin: auto; flex: none; }
+.lb-body img { display: block; border-radius: 8px; }
+.lb-body .lb-svg { background: #1F232B; border-radius: 10px; padding: 16px; }
+.lb-body .lb-svg svg { display: block; }
+.lb-body > * { cursor: zoom-in; }
+dialog.lb.zoomed .lb-body > * { cursor: zoom-out; }
+
+@media (max-width: 720px) {
+  .compare { grid-template-columns: 1fr; }
+  .mast { padding-block: 36px 24px; }
+  section.theme { padding-block: 44px 4px; }
+  section.theme h2 { gap: 10px; }
+}
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; transition: none !important; } }
+html { scroll-behavior: smooth; }
+</style>
+
+<!--
+  Work-report template. See ../SKILL.md and ../references/ for the rules.
+  scripts/new-report.sh copies this file and fills the header numbers. Then:
+  - Replace every {{…}} placeholder.
+  - Keep one <section class="theme"> per THING SHIPPED (not per PR), numbered 01, 02…
+    in the order a reader should meet them: biggest impact first, smaller fixes last.
+  - Delete any block a section doesn't need (a UI-only feature has no mermaid pair;
+    a backend change has no screenshots). Never leave an example block in.
+  - Everything below the closing </div> of .wrap (lightbox dialog + script) is
+    shared machinery. Don't edit it per report.
+-->
+<div class="wrap">
+
+<header class="mast">
+  <div class="eyebrow">{{Project}} · Work report · {{Mon D–D, YYYY}} · PRs #{{first}}–#{{last}}</div>
+  <h1>{{One-sentence thesis of the period}}, <span>{{its sharpest half}}</span>.</h1>
+  <p class="lede">{{3–4 sentences, plain language: what the period was mostly about and what users/the business get from it. Name the new surfaces.}}</p>
+  <div class="stats">
+    <div class="stat"><b>{{PRs}}</b><span>merged PRs{{ (plus N closed and folded into later ones)}}</span></div>
+    <div class="stat"><b class="diff"><span class="plus">+{{16.4k}}</span><span class="minus">−{{3.3k}}</span></b><span>lines changed across the range</span></div>
+    <!-- 1–2 more "X → Y" tiles, only if a real before→after number exists (e.g. "cron jobs 4 → 0", "writes per request 3 → 1"). -->
+    <div class="stat"><b>{{X → Y}}</b><span>{{what the number counts}}</span></div>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Sections">
+  <a href="#{{slug}}"><i>01</i>{{2–3 word name}}</a>
+  <!-- one chip per section; the smaller-fixes chip shows its range, e.g. <i>08–11</i> -->
+  <a href="#smaller"><i>{{NN–NN}}</i>Smaller fixes</a>
+</nav>
+
+<!-- ═════════ 01 ARCHITECTURE-STYLE SECTION (diagram before/after) ═════════ -->
+<section class="theme" id="{{slug}}">
+  <div class="head">
+    <div class="kicker"><span class="tag">{{ADR / review item / area}}</span><span class="tag">architecture</span>
+      <!-- flag-gated? add: <span class="tag flag">behind flag: {{flag_key}} (off)</span> -->
+    </div>
+    <h2><span class="num">01</span>{{Headline in user terms: what is now true}}</h2>
+    <div class="prs"><span class="lbl">Shipped in</span>
+      <a href="{{repo-url}}/pull/{{n}}"><b>#{{n}}</b> {{3–5 word gist}}</a>
+      <!-- closed-and-folded PR: <a class="closed" href="…" title="Closed; its work landed in #N"><b>#N</b> closed, folded into #M</a> -->
+    </div>
+  </div>
+  <p class="plain">{{Before: how it worked and what went wrong for a user. Now: how it works. 3–5 sentences, no jargon a founder wouldn't know.}}</p>
+
+  <div class="compare">
+    <div class="diagram">
+      <span class="label before">Before</span>
+      <div class="scroll"><pre class="mermaid">
+flowchart TB
+  A([{{trigger}}]) --> B[{{step}}]
+  B -.->|{{failure path}}| X["{{what broke}}"]
+  style X stroke-dasharray: 4 3
+      </pre></div>
+    </div>
+    <div class="diagram">
+      <span class="label after">After</span>
+      <div class="scroll"><pre class="mermaid">
+flowchart TB
+  A([{{trigger}}]) --> B[{{new step}}]
+      </pre></div>
+    </div>
+  </div>
+
+  <div class="better">
+    <h3>Why it's better</h3>
+    <ul>
+      <li><b>{{Claim in one bold sentence.}}</b> {{Evidence with a real number from the PR's verification, e.g. "5 duplicate deliveries produced <b>1</b> payment row".}}</li>
+    </ul>
+  </div>
+
+  <details class="tech">
+    <summary>Technical detail{{: topic}}</summary>
+    <div class="inner">
+      <!-- In depth: sequence/state diagrams, tables of findings, file names, invariants,
+           and what was NOT verified. The reader opened this on purpose; be precise. -->
+      <ul>
+        <li>{{mechanism, with <code>identifiers</code>}}</li>
+      </ul>
+    </div>
+  </details>
+</section>
+
+<!-- ═════════ 02 UI SECTION (screenshot before/after) ═════════ -->
+<section class="theme" id="{{slug}}">
+  <div class="head">
+    <div class="kicker"><span class="tag">new feature</span></div>
+    <h2><span class="num">02</span>{{Headline}}</h2>
+    <div class="prs"><span class="lbl">Shipped in</span>
+      <a href="{{repo-url}}/pull/{{n}}"><b>#{{n}}</b> {{gist}}</a>
+    </div>
+  </div>
+  <p class="plain">{{What the user can now do.}}</p>
+
+  <div class="compare">
+    <figure>
+      <span class="label before">Before</span>
+      <!-- brand-new surface with no "before"? use <span class="label new">New · {{what}}</span> on both figures instead -->
+      <img src="img/{{name}}-before.webp" alt="{{what the screenshot shows}}" width="1600" height="1000" loading="lazy">
+      <figcaption>{{Point at the exact thing to look at, quoting on-screen text; if the UI is in another language, gloss it: "رفع" (Upload).}}</figcaption>
+    </figure>
+    <figure>
+      <span class="label after">After</span>
+      <img src="img/{{name}}-after.webp" alt="{{…}}" width="1600" height="1000" loading="lazy">
+      <figcaption>{{…}}</figcaption>
+    </figure>
+  </div>
+  <!-- A thin strip (a top bar, a toolbar) reads better stacked: <div class="compare stack">…</div> -->
+
+  <div class="better">
+    <h3>Why it's better</h3>
+    <ul><li><b>{{…}}</b> {{…}}</li></ul>
+  </div>
+</section>
+
+<!-- ═════════ SMALLER FIXES (each one still gets its own number) ═════════ -->
+<section class="theme" id="smaller">
+  <div class="head">
+    <div class="kicker"><span class="tag">fixes</span></div>
+    <h2><span class="num">{{NN–NN}}</span>Smaller fixes</h2>
+  </div>
+
+  <!-- A fix with a visual before/after gets a full-width .small with a .compare inside. -->
+  <div class="small">
+    <h3><span class="num">{{NN}}</span>{{What was broken, in user terms}}</h3>
+    <div class="prs"><a href="{{repo-url}}/pull/{{n}}"><b>#{{n}}</b> {{gist}}</a></div>
+    <p>{{Cause in one sentence, fix in one sentence.}}</p>
+  </div>
+
+  <!-- The rest go in a grid, one card each. -->
+  <div class="small-grid">
+    <div class="small">
+      <h3><span class="num">{{NN}}</span>{{…}}</h3>
+      <div class="prs"><a href="{{repo-url}}/pull/{{n}}"><b>#{{n}}</b> {{gist}}</a></div>
+      <p>{{… with a number if there is one: <b>~1,890 → ~1,500 MB</b>}}</p>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<dialog class="lb" id="lb" aria-label="Expanded view">
+  <div class="lb-bar">
+    <span class="lb-cap" id="lb-cap"></span>
+    <button type="button" id="lb-zoom">Actual size</button>
+    <button type="button" id="lb-close">Close</button>
+  </div>
+  <div class="lb-body" id="lb-body"></div>
+</dialog>
+
+<script>
+(function () {
+  var dlg = document.getElementById('lb');
+  var body = document.getElementById('lb-body');
+  var cap = document.getElementById('lb-cap');
+  var zoomBtn = document.getElementById('lb-zoom');
+  var ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>';
+  var current = null; // { el, w, h }
+  var zoomed = false;
+
+  // Fit the node to the viewport; "Actual size" doubles a diagram or shows an image at full resolution.
+  function layout() {
+    if (!current) return;
+    var pad = current.pad || 0;
+    var availW = body.clientWidth - 48 - pad, availH = body.clientHeight - 48 - pad;
+    var fit = Math.min(availW / current.w, availH / current.h);
+    var s = zoomed ? Math.max(fit * 2, current.max || 1) : fit;
+    current.el.style.width = Math.round(current.w * s) + 'px';
+    current.el.style.height = Math.round(current.h * s) + 'px';
+    dlg.classList.toggle('zoomed', zoomed);
+    zoomBtn.textContent = zoomed ? 'Fit to screen' : 'Actual size';
+  }
+
+  function open(node, w, h, max, caption) {
+    body.replaceChildren(node);
+    current = { el: node, w: w, h: h, max: max, pad: node.classList.contains('lb-svg') ? 32 : 0 };
+    zoomed = false;
+    cap.textContent = caption || '';
+    node.addEventListener('click', function (e) { e.stopPropagation(); zoomed = !zoomed; layout(); });
+    if (!dlg.open) dlg.showModal();
+    layout();
+    body.scrollTop = 0; body.scrollLeft = 0;
+  }
+
+  function openImage(img, caption) {
+    var el = new Image();
+    el.src = img.currentSrc || img.src;
+    el.alt = img.alt;
+    var w = img.naturalWidth || img.width, h = img.naturalHeight || img.height;
+    // "Actual size" = the screenshot's own pixels (it was captured at 2x, so this is sharp).
+    open(el, w, h, 1, caption || img.alt);
+  }
+
+  function openDiagram(diagram, caption) {
+    var svg = diagram.querySelector('.scroll svg');
+    if (!svg) return;
+    var vb = svg.viewBox && svg.viewBox.baseVal;
+    var w = (vb && vb.width) || svg.getBoundingClientRect().width;
+    var h = (vb && vb.height) || svg.getBoundingClientRect().height;
+    var clone = svg.cloneNode(true);
+    clone.removeAttribute('style');
+    clone.setAttribute('width', '100%');
+    clone.setAttribute('height', '100%');
+    var wrap = document.createElement('div');
+    wrap.className = 'lb-svg';
+    wrap.style.boxSizing = 'content-box';
+    wrap.appendChild(clone);
+    open(wrap, w, h, 1.5, caption);
+  }
+
+  function addButton(host, onOpen) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'expand';
+    b.setAttribute('aria-label', 'Expand');
+    b.title = 'Expand';
+    b.innerHTML = ICON;
+    b.addEventListener('click', function (e) { e.stopPropagation(); onOpen(); });
+    host.appendChild(b);
+  }
+
+  document.querySelectorAll('figure img').forEach(function (img) {
+    var fig = img.closest('figure');
+    var shot = document.createElement('div');
+    shot.className = 'shot';
+    img.parentNode.insertBefore(shot, img);
+    shot.appendChild(img);
+    var capEl = fig && fig.querySelector('figcaption');
+    var label = fig && fig.querySelector('.label');
+    var text = [label && label.textContent, capEl && capEl.textContent].filter(Boolean).join(' · ');
+    var go = function () { openImage(img, text); };
+    img.addEventListener('click', go);
+    addButton(shot, go);
+  });
+
+  document.querySelectorAll('.diagram').forEach(function (d) {
+    var label = d.querySelector('.label');
+    var section = d.closest('section');
+    var h2 = section && section.querySelector('h2');
+    var num = h2 && h2.querySelector('.num');
+    var title = h2 ? (num ? num.textContent + '  ' : '') + Array.prototype.filter.call(h2.childNodes, function (n) { return n !== num; }).map(function (n) { return n.textContent; }).join('').trim() : '';
+    var text = [title, label && label.textContent].filter(Boolean).join(' · ');
+    var go = function () { openDiagram(d, text); };
+    d.querySelector('.scroll').addEventListener('click', function (e) { if (e.target.closest('svg')) go(); });
+    addButton(d, go);
+  });
+
+  zoomBtn.addEventListener('click', function () { zoomed = !zoomed; layout(); });
+  document.getElementById('lb-close').addEventListener('click', function () { dlg.close(); });
+  body.addEventListener('click', function (e) { if (e.target === body) dlg.close(); });
+  dlg.addEventListener('close', function () { body.replaceChildren(); current = null; });
+  window.addEventListener('resize', layout);
+})();
+</script>
