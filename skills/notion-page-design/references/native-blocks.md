@@ -30,7 +30,7 @@ Cells contain rich text, not nested blocks. Keep them short and move long explan
 ```markdown
 ---
 <details>
-<summary>📦 Work package details</summary>
+<summary>📚 Archived validation evidence</summary>
 	### Acceptance criteria
 	- [ ] Manual edits reach the next conversation turn.
 	- [ ] Generate submits the reviewed draft revision.
@@ -60,6 +60,8 @@ Use quoted labels and compact graphs. Use sequence diagrams for ordered interact
 
 ## Page icons and structural references
 
-Set a native blue icon using the page update tool's supported icon field. A valid identifier observed on the user's DragPath page is `icons/megaphone_blue`; prefer a fitting blue icon discovered from the workspace or supported metadata.
+Set a distinct native blue icon using the page update tool's supported icon field. Verified Notion SVG assets include `icons/document_blue`, `icons/map_blue`, `icons/list_blue`, `icons/book_blue`, and `icons/flag_blue`. Use a symbol fitting each page, not the same megaphone for every sibling. Confirm the chosen identifier is supported by the connected tool and fetch afterward to check native icon metadata.
 
 Preserve `<page url="...">...</page>` for existing child pages. Using `<mention-page>` instead changes the structural meaning and can remove the child. Do not create a parent mention merely to provide a backlink.
+
+Check block order after writing: a table and description belonging beneath a heading must appear there, with child-page navigation grouped together rather than interleaved with those blocks.
