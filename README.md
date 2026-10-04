@@ -6,6 +6,7 @@
 | --- | --- |
 | [`arabic-copy`](skills/arabic-copy) | Write Arabic UI copy in business-casual Saudi Najdi. Kills the stiff, translated, "AI-sounding" register that MSA-by-default produces, without swinging to copy that's curt or accusing. |
 | [`form-design`](skills/form-design) | Design and review forms. The three guidance layers (helper text, placeholder, validation), when to validate on blur vs in real time, field ordering and width, and an accessibility-aware field anatomy. |
+| [`notion-page-design`](skills/notion-page-design) | Design readable Notion pages with native callouts, date mentions, tables, Mermaid diagrams, and collapsible detail. Uses blue page icons for DragPath and avoids redundant parent backlinks. |
 | [`work-report`](skills/work-report) | Turn a range of merged PRs into a visual report: every thing shipped numbered, real before/after screenshots for UI changes, before/after diagrams for architecture changes, and a "why it's better" box backed by numbers from the PRs. Published as an Artifact or one self-contained HTML file. |
 
 ## Install
