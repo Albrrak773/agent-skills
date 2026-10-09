@@ -25,6 +25,14 @@ Start with a short purpose or status callout, then the information the reader ne
 
 Keep related blocks directly under their heading in the requested order. Do not interleave child-page blocks with a table or description section. After writing, inspect the fetched block order, not just the presence of each block; preserved native child blocks can end up misplaced during a rewrite.
 
+## Codebase explanations and audits
+
+For technical reports, show short excerpts of the actual inspected queries and code in fenced blocks. Prefer the implementation over invented examples. Preserve real identifiers, predicates, parameters, execution order, and relevant error handling. Trim unrelated lines by replacing them with language-appropriate comments explaining what was omitted. Label trimmed excerpts as excerpts; do not present them as complete runnable programs.
+
+Put a source link beside each excerpt, pinned to the reviewed revision when available. Explain in plain language what the code does and why it matters. Keep the excerpt close to the concept it explains, and inline-link a useful learning resource when introducing an unfamiliar concept. Never include secrets.
+
+When an audit is requested, make the findings visible and prioritize them. Tie each finding to inspected code, a concrete failure scenario, its impact, and a suggested remedy. Distinguish confirmed implementation gaps, design tradeoffs, and production behavior that has not been verified. Keep longer evidence in optional toggles without hiding the findings themselves.
+
 ## Phase registers
 
 When the user asks for progress to be organized by phases, make the progress page a register of phase subpages. Keep only the phase overview, status, navigation, and register conventions on that page. Put a phase's scope, completed work, remaining work, decisions, PRs, blockers, and handoffs in its own child page, using visible headings.
