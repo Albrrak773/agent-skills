@@ -6,6 +6,7 @@
 | --- | --- |
 | [`arabic-copy`](skills/arabic-copy) | Write Arabic UI copy in business-casual Saudi Najdi. Kills the stiff, translated, "AI-sounding" register that MSA-by-default produces, without swinging to copy that's curt or accusing. |
 | [`form-design`](skills/form-design) | Design and review forms. The three guidance layers (helper text, placeholder, validation), when to validate on blur vs in real time, field ordering and width, and an accessibility-aware field anatomy. |
+| [`mock`](skills/mock) | Build throwaway HTML mocks that answer one design question before anything is built: 2-3 genuinely different variants to flip between, or a clickable demo of a flow or state model. Uses the product's real tokens, screenshots every variant at several widths, and records what was decided. |
 | [`notion-page-design`](skills/notion-page-design) | Design readable Notion pages with native callouts, date mentions, tables, Mermaid diagrams, and collapsible detail. Uses blue page icons for DragPath and avoids redundant parent backlinks. |
 | [`work-report`](skills/work-report) | Turn a range of merged PRs into a visual report: every thing shipped numbered, real before/after screenshots for UI changes, before/after diagrams for architecture changes, and a "why it's better" box backed by numbers from the PRs. Published as an Artifact or one self-contained HTML file. |
 
@@ -40,6 +41,14 @@ Plus the dialect-leak table (Egyptian/Levantine/Hejazi words that sneak in), a k
 Forms fail in predictable ways: the label lives in the placeholder and vanishes on the first keystroke, errors fire before the user has finished typing, and every field is stretched to the same width regardless of what goes in it. The skill separates the three guidance layers that usually get collapsed into one, and pins down validation timing (blur for simple fields, debounced real-time for complex formats, submit as the backstop).
 
 Also covers single-column layout, ordering fields the way a person thinks rather than the way the table is shaped, `<fieldset>` grouping, correct input `type` and `autocomplete` values, and a review checklist.
+
+## About `mock`
+
+Asking an agent for "a few options" usually gets the same layout three times in different colours. The skill starts from one written question, picks directions along a named axis (layout, hierarchy, density, interaction model, disclosure), and rejects any pair that differs only in styling. Each variant is a full page inside the product's real frame and tokens, with real content and nothing the system couldn't know.
+
+- **Variants or a logic demo.** "What should this look like?" gets variants; "does this flow make sense?" gets one clickable page with the rules in pure functions and scenario tabs for the awkward cases.
+- **Tooling that stays out of the design.** A shared index page and a small prev/next bar driven by one `variants.js` manifest, plus `scripts/shoot.mjs`, which screenshots every variant at each width and reports overflow, broken images and script errors.
+- **A record.** Decisions go into the manifest, dated, so the folder doubles as the handoff.
 
 ## About `work-report`
 

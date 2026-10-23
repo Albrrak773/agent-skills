@@ -6,7 +6,7 @@
   },
   "metadata": {
     "description": "Agent Skills for Claude Code",
-    "version": "1.3.0"
+    "version": "1.4.0"
   },
   "plugins": [
     {
@@ -29,11 +29,12 @@
     },
     {
       "name": "ui-craft",
-      "description": "Interface design practices: form guidance layers, validation timing, and field layout",
+      "description": "Interface design practices: throwaway HTML mocks and variants, form guidance layers, validation timing, and field layout",
       "source": "./",
       "strict": false,
       "skills": [
-        "./skills/form-design"
+        "./skills/form-design",
+        "./skills/mock"
       ]
     },
     {
